@@ -33,60 +33,60 @@ namespace GitHub.Runner.Common.Tests.Worker
             return hc;
         }
 
-        //[Fact]
-        //[Trait("Level", "L0")]
-        //[Trait("Category", "Worker")]
-        //public void CreatesTrackingConfig()
-        //{
-        //    using (TestHostContext hc = Setup())
-        //    {
-        //        // Arrange.
-        //        string trackingFile = Path.Combine(_workFolder, "trackingconfig.json");
-        //        DateTimeOffset testStartOn = DateTimeOffset.Now;
+        [Fact]
+        [Trait("Level", "L0")]
+        [Trait("Category", "Worker")]
+        public void CreatesTrackingConfig()
+        {
+            using (TestHostContext hc = Setup())
+            {
+                // Arrange.
+                string trackingFile = Path.Combine(_workFolder, "trackingconfig.json");
+                DateTimeOffset testStartOn = DateTimeOffset.Now;
 
-        //        // Act.
-        //        _trackingManager.Create(_ec.Object, trackingFile);
+                // Act.
+                _trackingManager.Create(_ec.Object, trackingFile);
 
-        //        // Assert.
-        //        TrackingConfig config = _trackingManager.LoadIfExists(_ec.Object, trackingFile);
-        //        Assert.Equal("runner", config.PipelineDirectory);
-        //        Assert.Equal($"runner{Path.DirectorySeparatorChar}runner", config.WorkspaceDirectory);
-        //        Assert.Equal("actions/runner", config.RepositoryName);
+                // Assert.
+                TrackingConfig config = _trackingManager.LoadIfExists(_ec.Object, trackingFile);
+                Assert.Equal("runner", config.PipelineDirectory);
+                //Assert.Equal($"runner{Path.DirectorySeparatorChar}runner", config.WorkspaceDirectory);
+                //Assert.Equal("actions/runner", config.RepositoryName);
 
-        //        Assert.Equal(1, config.Repositories.Count);
-        //        Assert.Equal($"runner{Path.DirectorySeparatorChar}runner", config.Repositories["actions/runner"].RepositoryPath);
+                //Assert.Equal(1, config.Repositories.Count);
+                //Assert.Equal($"runner{Path.DirectorySeparatorChar}runner", config.Repositories["actions/runner"].RepositoryPath);
 
-        //        // Manipulate the expected seconds due to loss of granularity when the
-        //        // date-time-offset is serialized in a friendly format.
-        //        Assert.True(testStartOn.AddSeconds(-1) <= config.LastRunOn);
-        //        Assert.True(DateTimeOffset.Now.AddSeconds(1) >= config.LastRunOn);
-        //    }
-        //}
+                //// Manipulate the expected seconds due to loss of granularity when the
+                //// date-time-offset is serialized in a friendly format.
+                //Assert.True(testStartOn.AddSeconds(-1) <= config.LastRunOn);
+                //Assert.True(DateTimeOffset.Now.AddSeconds(1) >= config.LastRunOn);
+            }
+        }
 
-        //[Fact]
-        //[Trait("Level", "L0")]
-        //[Trait("Category", "Worker")]
-        //public void LoadsTrackingConfig()
-        //{
-        //    using (TestHostContext hc = Setup())
-        //    {
-        //        // Arrange.
-        //        Directory.CreateDirectory(_workFolder);
-        //        string filePath = Path.Combine(_workFolder, "trackingconfig.json");
-        //        _trackingManager.Create(_ec.Object, filePath);
+        [Fact]
+        [Trait("Level", "L0")]
+        [Trait("Category", "Worker")]
+        public void LoadsTrackingConfig()
+        {
+            using (TestHostContext hc = Setup())
+            {
+                // Arrange.
+                Directory.CreateDirectory(_workFolder);
+                string filePath = Path.Combine(_workFolder, "trackingconfig.json");
+                _trackingManager.Create(_ec.Object, filePath);
 
-        //        // Act.
-        //        TrackingConfig config = _trackingManager.LoadIfExists(_ec.Object, filePath);
+                // Act.
+                TrackingConfig config = _trackingManager.LoadIfExists(_ec.Object, filePath);
 
-        //        // Assert.
-        //        Assert.NotNull(config);
-        //        Assert.Equal("actions/runner", config.RepositoryName);
-        //        Assert.Equal("runner", config.PipelineDirectory);
-        //        Assert.Equal($"runner{Path.DirectorySeparatorChar}runner", config.WorkspaceDirectory);
-        //        Assert.Equal(1, config.Repositories.Count);
-        //        Assert.Equal($"runner{Path.DirectorySeparatorChar}runner", config.Repositories["actions/runner"].RepositoryPath);
-        //    }
-        //}
+                // Assert.
+                Assert.NotNull(config);
+                //Assert.Equal("actions/runner", config.RepositoryName);
+                //Assert.Equal("runner", config.PipelineDirectory);
+                //Assert.Equal($"runner{Path.DirectorySeparatorChar}runner", config.WorkspaceDirectory);
+                //Assert.Equal(1, config.Repositories.Count);
+                //Assert.Equal($"runner{Path.DirectorySeparatorChar}runner", config.Repositories["actions/runner"].RepositoryPath);
+            }
+        }
 
         [Fact]
         [Trait("Level", "L0")]
