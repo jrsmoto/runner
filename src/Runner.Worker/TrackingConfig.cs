@@ -59,7 +59,8 @@ namespace GitHub.Runner.Worker
 
             // Set the directories.
             PipelineDirectory = repoName.ToString(CultureInfo.InvariantCulture);
-            WorkspaceDirectory = repoName;// Path.Combine(PipelineDirectory, repoName);
+            WorkspaceDirectory = repoName + @"\s";// Path.Combine(PipelineDirectory, repoName);
+
 
             Repositories[repoFullName] = new RepositoryTrackingConfig()
             {
